@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG Interativo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            background-image: url('cconcept_estrada.jpg'); /* Imagem inicial */
+        }
+
+        #game {
+            background: rgba(0, 0, 0, 0.7); /* Fundo semitransparente para o texto */
+            padding: 50px;
+            width: 50%;
+            margin: 100px auto;
+            border-radius: 10px;
+        }
+
+        button {
+            background-color: #555;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #777;
+        }
+
+        #story {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game">
+        <h1>Bem-vindo ao RPG Interativo</h1>
+        <div id="story">
+            <p>Você está em uma floresta escura e encontra uma bifurcação no caminho. O que você faz?</p>
+            <button onclick="choose('left')">Ir para a esquerda</button>
+            <button onclick="choose('right')">Ir para a direita</button>
+        </div>
+    </div>
+
+    <script>
+        function choose(choice) {
+            const storyDiv = document.getElementById('story');
+            const body = document.body; 
+
+            if (choice === 'left') {
+             
+                body.style.backgroundImage = "url('trio-atravessando-rio-202003219')";
+                storyDiv.innerHTML = `
+                    <p>Você foi para a esquerda e encontrou um rio. O que você faz?</p>
+                    <button onclick="choose('swim')">Tentar atravessar o rio</button>
+                    <button onclick="choose('back')">Voltar</button>
+                `;
+            } else if (choice === 'right') {
+            
+                body.style.backgroundImage = "url('10377367-dramatico-luz-no-escuro-caverna-paisagem-misteriosa-e-surreal-arte-digital-gratis-foto.jpg')";
+                storyDiv.innerHTML = `
+                    <p>Você foi para a direita e encontrou uma caverna. O que você faz?</p>
+                    <button onclick="choose('enter')">Entrar na caverna</button>
+                    <button onclick="choose('back')">Voltar</button>
+                `;
+            } else if (choice === 'swim') {
+            
+                body.style.backgroundImage = "url('rio-sucuri.jpg')";
+                storyDiv.innerHTML = `
+                    <p>Você tentou atravessar o rio, mas foi levado pela correnteza. Fim de jogo!</p>
+                    <button onclick="restart()">Recomeçar</button>
+                `;
+            } else if (choice === 'enter') {
+              
+                body.style.backgroundImage = "url('imagesdadad.jfif')";
+                storyDiv.innerHTML = `
+                    <p>Você entrou na caverna e encontrou um tesouro! Parabéns, você venceu o jogo!</p>
+                    <button onclick="restart()">Recomeçar</button>
+                `;
+            } else if (choice === 'back') {
+                
+                body.style.backgroundImage = "url('floresta.jpg')";
+                storyDiv.innerHTML = `
+                    <p>Você voltou à bifurcação no caminho. O que você faz?</p>
+                    <button onclick="choose('left')">Ir para a esquerda</button>
+                    <button onclick="choose('right')">Ir para a direita</button>
+                `;
+            }
+        }
+
+        function restart() {
+            const storyDiv = document.getElementById('story');
+            const body = document.body;
+            
+           
+            body.style.backgroundImage = "url('trio-atravessando-rio-202003219')";
+            
+            storyDiv.innerHTML = `
+                <p>Você está em uma floresta escura e encontra uma bifurcação no caminho. O que você faz?</p>
+                <button onclick="choose('left')">Ir para a esquerda</button>
+                <button onclick="choose('right')">Ir para a direita</button>
+            `;
+        }
+    </script>
+</body>
+</html>
